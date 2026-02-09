@@ -11,6 +11,14 @@
                     <h4 class="mb-0"><i class="bi bi-box-arrow-in-right me-2"></i>Entrar</h4>
                 </div>
                 <div class="card-body p-4">
+                    <!-- Aviso de promoção fictícia -->
+                    <div class="alert alert-warning py-2 mb-3">
+                        <small>
+                            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                            <strong>Promoção fictícia</strong> — Projeto de demonstração. Nenhum dado possui validade real.
+                        </small>
+                    </div>
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

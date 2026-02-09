@@ -4,6 +4,15 @@
 
 @section('content')
 <div class="container">
+    <!-- Aviso de promoção fictícia -->
+    <div class="alert alert-warning py-2 mb-3 border-warning">
+        <small>
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            <strong>Promoção fictícia</strong> — Este sistema é um projeto de demonstração para portfólio.
+            Nenhum dado, número da sorte ou prêmio possui validade real.
+        </small>
+    </div>
+
     @if($promocao->isEncerrada())
         <div class="alert alert-warning border-0 shadow-sm mb-4">
             <div class="d-flex align-items-center">

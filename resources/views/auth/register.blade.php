@@ -11,6 +11,14 @@
                     <h4 class="mb-0"><i class="bi bi-person-plus-fill me-2"></i>Cadastre-se na Promoção</h4>
                 </div>
                 <div class="card-body p-4">
+                    <!-- Aviso de promoção fictícia -->
+                    <div class="alert alert-warning py-2 mb-3">
+                        <small>
+                            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                            <strong>Promoção fictícia</strong> — Projeto de demonstração. Nenhum dado possui validade real.
+                        </small>
+                    </div>
+
                     <!-- Alerta de promoção encerrada (oculto, exibido via JS) -->
                     <div id="alertaPromocaoEncerrada" class="alert alert-danger d-none" role="alert">
                         <i class="bi bi-exclamation-octagon-fill me-2"></i>

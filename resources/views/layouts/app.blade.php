@@ -224,6 +224,17 @@
         </div>
     </nav>
 
+    <!-- Banner de Promoção Fictícia -->
+    <div class="disclaimer-banner bg-warning text-dark py-2 border-bottom border-warning-subtle">
+        <div class="container text-center">
+            <small class="fw-semibold">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                <strong>PROJETO FICTÍCIO</strong> — Este sistema é uma demonstração de portfólio. Não se trata de uma promoção real.
+                Nenhum dado possui validade jurídica ou comercial.
+            </small>
+        </div>
+    </div>
+
     <!-- Alerts -->
     <div class="container mt-3">
         @if(session('success'))
@@ -272,7 +283,13 @@
             <p class="mb-1">
                 <i class="bi bi-star-fill me-1"></i><strong>Promoção Modelo</strong>
             </p>
-            <p class="small mb-0">&copy; {{ date('Y') }} - Todos os direitos reservados. Consulte o <a href="{{ route('regulamento') }}" class="text-light">regulamento</a>.</p>
+            <p class="small mb-2">&copy; {{ date('Y') }} - Todos os direitos reservados. Consulte o <a href="{{ route('regulamento') }}" class="text-light">regulamento</a>.</p>
+            <div class="border-top border-secondary pt-2 mt-2">
+                <p class="small mb-0 opacity-75">
+                    <i class="bi bi-exclamation-triangle me-1"></i>
+                    <strong>Projeto fictício para fins de portfólio.</strong> Esta promoção não é real e não possui qualquer validade jurídica ou comercial.
+                </p>
+            </div>
         </div>
     </footer>
 

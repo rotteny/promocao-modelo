@@ -9,6 +9,12 @@
             <div class="text-center mb-5">
                 <h2 class="fw-bold"><i class="bi bi-question-circle me-2" style="color: var(--pm-primary);"></i>Perguntas Frequentes</h2>
                 <p class="text-muted">Tire suas dúvidas sobre a Promoção Modelo.</p>
+                <div class="alert alert-warning py-2 mb-0 d-inline-block">
+                    <small>
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                        <strong>Promoção fictícia</strong> — Projeto de demonstração para portfólio. Sem validade jurídica.
+                    </small>
+                </div>
             </div>
 
             @if($faqs->isEmpty())

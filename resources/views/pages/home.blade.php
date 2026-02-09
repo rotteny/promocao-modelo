@@ -36,6 +36,12 @@
     <div class="container">
         <div class="row align-items-center min-vh-50">
             <div class="col-lg-7">
+                <div class="alert alert-dark bg-opacity-25 border-0 mb-3 py-2 px-3 d-inline-block" style="background: rgba(0,0,0,0.3) !important; border-radius: 8px;">
+                    <small class="text-white">
+                        <i class="bi bi-info-circle me-1"></i>
+                        <strong>Demonstração de portfólio</strong> — Esta promoção é fictícia e não possui validade jurídica.
+                    </small>
+                </div>
                 <h1 class="display-4 fw-bold mb-3">
                     <i class="bi bi-trophy-fill me-2"></i>Promoção Modelo
                 </h1>

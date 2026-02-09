@@ -1,17 +1,25 @@
 # Promoção Modelo
 
-Sistema de campanha promocional desenvolvido com **Laravel 12**, **PostgreSQL** e **Bootstrap 5**.
+Sistema base de campanha promocional desenvolvido como projeto de portfólio para demonstração de habilidades em desenvolvimento web full-stack.
 
-Participantes cadastram cupons fiscais de compras e recebem números da sorte automaticamente para concorrer a prêmios.
+O sistema simula uma promoção comercial completa, onde participantes cadastram cupons fiscais de compras e recebem números da sorte automaticamente para concorrer a prêmios.
+
+> **AVISO IMPORTANTE:** Este é um projeto fictício, desenvolvido exclusivamente para fins de demonstração e portfólio. Não se trata de uma promoção real. Nenhum dado cadastrado possui validade jurídica, comercial ou legal de qualquer natureza.
 
 ---
 
 ## Requisitos
 
-- PHP >= 8.2
+- **Laradock** (Docker)
 - Composer
-- PostgreSQL >= 14
 - Node.js >= 18 e NPM (para assets com Vite)
+
+### Containers Laradock utilizados
+
+- `workspace` — PHP 8.2+, Composer, Artisan
+- `php-fpm` — PHP-FPM para Nginx
+- `nginx` — Servidor web
+- `postgres` — PostgreSQL >= 14
 
 ### Extensões PHP necessárias
 
@@ -28,7 +36,7 @@ Participantes cadastram cupons fiscais de compras e recebem números da sorte au
 
 ---
 
-## Instalação
+## Instalação com Laradock
 
 ### 1. Clonar o repositório
 
@@ -37,61 +45,100 @@ git clone <url-do-repositorio> promocao-modelo
 cd promocao-modelo
 ```
 
-### 2. Instalar dependências
+### 2. Configurar o Laradock
+
+Se ainda não possui o Laradock configurado, clone-o como subdiretório ou na raiz de seus projetos:
+
+```bash
+git clone https://github.com/Laradock/laradock.git
+cd laradock
+cp .env.example .env
+```
+
+No `.env` do Laradock, ajuste:
+
+```dotenv
+# Apontar para o projeto
+APP_CODE_PATH_HOST=../promocao-modelo
+
+# PostgreSQL
+POSTGRES_DB=promocao_modelo
+POSTGRES_USER=default
+POSTGRES_PASSWORD=secret
+POSTGRES_PORT=5432
+
+# PHP
+PHP_VERSION=8.2
+```
+
+### 3. Subir os containers
+
+```bash
+cd laradock
+docker-compose up -d nginx postgres workspace
+```
+
+### 4. Acessar o container workspace
+
+```bash
+docker-compose exec workspace bash
+```
+
+> **Todos os comandos a seguir devem ser executados dentro do container `workspace`.**
+
+### 5. Instalar dependências
 
 ```bash
 composer install
 npm install
 ```
 
-### 3. Configurar o ambiente
+### 6. Configurar o ambiente
 
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-Edite o arquivo `.env` com as credenciais do seu PostgreSQL:
+Edite o arquivo `.env` do projeto com as credenciais do PostgreSQL do Laradock:
 
 ```dotenv
 DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
+DB_HOST=postgres
 DB_PORT=5432
 DB_DATABASE=promocao_modelo
-DB_USERNAME=seu_usuario
-DB_PASSWORD=sua_senha
+DB_USERNAME=default
+DB_PASSWORD=secret
+
+QUEUE_CONNECTION=database
+SESSION_DRIVER=database
+CACHE_STORE=database
 ```
 
-### 4. Criar o banco de dados
+> **Nota:** o `DB_HOST` é `postgres` (nome do container no Laradock), não `127.0.0.1`.
 
-```bash
-createdb promocao_modelo
-```
-
-### 5. Executar migrations e seeds
+### 7. Executar migrations e seeds
 
 ```bash
 php artisan migrate
 php artisan db:seed
 ```
 
-### 6. Compilar assets
+### 8. Compilar assets
 
 ```bash
 npm run build
 ```
 
-### 7. Iniciar o servidor
+### 9. Acessar o sistema
 
-```bash
-php artisan serve
-```
+Acesse: **http://localhost** (ou a porta configurada no Nginx do Laradock)
 
-Acesse: **http://localhost:8000**
+### 10. Iniciar o Worker da Fila
 
-### 8. Iniciar o Worker da Fila
+O processamento dos cupons fiscais (geração de números da sorte) acontece de forma **assíncrona** através de uma fila dedicada. É obrigatório iniciar o worker para que os cupons sejam processados.
 
-O processamento dos cupons fiscais (geração de números da sorte) acontece de forma **assíncrona** através de uma fila dedicada. É obrigatório iniciar o worker para que os cupons sejam processados:
+Dentro do container `workspace`:
 
 ```bash
 php artisan queue:work --queue=numeros-da-sorte --tries=1 --timeout=120
@@ -101,18 +148,34 @@ php artisan queue:work --queue=numeros-da-sorte --tries=1 --timeout=120
 
 - Use **apenas 1 worker** para esta fila, garantindo o processamento serializado (FIFO)
 - O parâmetro `--tries=1` impede retentativas automáticas (erros bloqueiam a fila)
-- Em produção, utilize o Supervisor para manter o worker ativo:
+- Para manter o worker ativo em segundo plano, utilize o **Supervisor** no container workspace:
 
 ```ini
 [program:numeros-da-sorte-worker]
 process_name=%(program_name)s
-command=php /caminho/do/projeto/artisan queue:work --queue=numeros-da-sorte --tries=1 --timeout=120 --sleep=3
+command=php /var/www/artisan queue:work --queue=numeros-da-sorte --tries=1 --timeout=120 --sleep=3
 autostart=true
 autorestart=true
-user=www-data
+user=laradock
 numprocs=1
 redirect_stderr=true
-stdout_logfile=/caminho/do/projeto/storage/logs/worker.log
+stdout_logfile=/var/www/storage/logs/worker.log
+```
+
+---
+
+## Simulação de Dados
+
+Para popular o banco com dados de teste simulando uma promoção em andamento (~520 participantes com cupons aleatórios):
+
+```bash
+php artisan db:seed --class=SimulacaoPromocaoSeeder
+```
+
+Em seguida, inicie o worker para processar os cupons e distribuir os números da sorte:
+
+```bash
+php artisan queue:work --queue=numeros-da-sorte --tries=1 --timeout=120
 ```
 
 ---
@@ -125,16 +188,17 @@ Após rodar o `db:seed`, os seguintes usuários estarão disponíveis:
 
 | Campo | Valor |
 |-------|-------|
+| URL | `/admin/login` |
 | E-mail | `admin@promocaomodelo.com.br` |
 | Senha | `admin123` |
 
-O administrador padrão é um **Super Admin** com acesso total ao painel de controle em `/admin/login`, incluindo:
+O administrador padrão é um **Super Admin** com acesso total ao painel de controle, incluindo:
 
 - **Dashboard** com gráficos de acompanhamento e estatísticas
 - **Gerenciamento de produtos** participantes e bônus
 - **FAQ** dinâmico
 - **Configurações** da promoção (datas, valores, regras)
-- **Controle da campanha** (encerrar/reabrir)
+- **Controle da campanha** (encerrar/reabrir — na tela de configurações)
 - **Gerenciamento de administradores** com permissões granulares
 
 #### Permissões disponíveis
@@ -152,6 +216,7 @@ Super Admins têm acesso irrestrito e podem gerenciar outros administradores. Ta
 
 | Campo | Valor |
 |-------|-------|
+| URL | `/login` |
 | E-mail | `participante@example.com` |
 | Senha | `senha123` |
 | Nome | João da Silva |
@@ -165,8 +230,10 @@ O participante acessa via `/login`. Tabela separada (`participantes`).
 
 ### 1. Criar o banco de testes
 
+No container `workspace`:
+
 ```bash
-createdb promocao_modelo_test
+PGPASSWORD=secret createdb -h postgres -U default promocao_modelo_test
 ```
 
 ### 2. Rodar os testes
@@ -195,7 +262,8 @@ Os testes cobrem as regras de negócio do `LuckyNumberService`, `CupomFiscalServ
 app/
 ├── Contracts/                    # Interfaces e DTOs
 │   ├── InvoiceValidatorInterface.php
-│   └── InvoiceValidationResult.php
+│   ├── InvoiceValidationResult.php
+│   └── InvoiceQueryResult.php
 ├── Exports/                      # Exportações para Excel
 │   ├── CuponsFiscaisExport.php
 │   ├── NumerosDaSorteExport.php
@@ -212,7 +280,8 @@ app/
 │   │   │   ├── AdminNumeroDaSorteController.php   # Listagem e exportação de números
 │   │   │   ├── AdminParticipanteController.php    # Listagem e exportação de participantes
 │   │   │   ├── AdminProdutoController.php         # CRUD de produtos
-│   │   │   └── AdminSettingController.php         # Configurações da promoção
+│   │   │   ├── AdminSettingController.php         # Configurações da promoção
+│   │   │   └── AdminUserController.php            # CRUD de administradores
 │   │   ├── Auth/
 │   │   │   ├── AdminLoginController.php   # Login admin (guard: admin)
 │   │   │   ├── LoginController.php        # Login participante (guard: web)
@@ -221,15 +290,16 @@ app/
 │   │   ├── DashboardController.php
 │   │   └── PageController.php
 │   ├── Middleware/
-│   │   └── VerificarPromocaoAtiva.php  # Bloqueia acesso quando campanha inativa
+│   │   ├── CheckAdminPermission.php     # Verifica permissão do admin
+│   │   └── VerificarPromocaoAtiva.php   # Bloqueia acesso quando campanha inativa
 │   └── Requests/
 │       ├── LoginRequest.php
 │       ├── RegisterRequest.php
-│       └── StoreCupomFiscalRequest.php
+│       └── StoreCupomFiscalRequest.php  # Validação: número + CNPJ únicos, valor mínimo R$ 20
 ├── Jobs/
 │   ├── Middleware/
-│   │   └── EnsureFilaDesbloqueada.php  # Middleware que verifica bloqueio
-│   └── ProcessarCupomFiscal.php        # Job de processamento assíncrono
+│   │   └── EnsureFilaDesbloqueada.php   # Middleware que verifica bloqueio
+│   └── ProcessarCupomFiscal.php         # Job de processamento assíncrono
 ├── Models/
 │   ├── CupomFiscal.php
 │   ├── Faq.php
@@ -238,7 +308,7 @@ app/
 │   ├── Participante.php          # Tabela: participantes
 │   ├── ProdutoParticipante.php
 │   ├── Setting.php
-│   └── User.php                  # Tabela: users (admin)
+│   └── User.php                  # Tabela: users (admin, com permissões)
 ├── Notifications/
 │   ├── CampanhaEncerrada.php       # Notificação de encerramento
 │   └── ErroProcessamentoCupom.php  # Notificação de erro para admins
@@ -258,6 +328,7 @@ app/
 ### Números da Sorte
 
 - **R$ 20,00** em compras de produtos participantes = **1 número da sorte**
+- **Valor mínimo por cupom:** R$ 20,00 em produtos (validado no frontend e backend)
 - **Produtos bônus** contam em dobro: além dos números base, o participante ganha **+1 número extra a cada R$ 20,00** do valor dos produtos bônus
 - **10 séries** (0 a 9), cada uma com **10.000 números** (0000 a 9999)
 - As séries são preenchidas **sequencialmente** (primeiro a série 0, depois a 1...)
@@ -292,19 +363,22 @@ Pendente → Validado (na fila) → Processando → Concluído
 
 ### Período e Encerramento da Campanha
 
-A campanha respeita estritamente as datas e horários configurados:
+A campanha respeita estritamente as datas e horários configurados (padrão: 01/01/2026 a 31/12/2026):
 
 - **Antes do início:** Cadastros e cupons são bloqueados. A landing page exibe contagem regressiva.
 - **Durante o período:** A promoção aceita cadastros e cupons normalmente. Um countdown mostra o tempo restante.
 - **Após o fim:** Cadastros e cupons são bloqueados automaticamente. Participantes podem fazer login para consultar seus números.
 - **Esgotamento de números:** Se todos os 100.000 números forem distribuídos, a campanha é encerrada **imediatamente**, mesmo antes da data final.
-- **Encerramento manual:** O admin pode encerrar a campanha a qualquer momento pelo painel.
+- **Encerramento manual:** O admin pode encerrar a campanha pela tela de configurações (requer permissão `perm_encerrar_campanha`).
 
 **Proteção em tempo real:** Formulários de cadastro e cupom verificam o status da promoção via API a cada 30 segundos. Se a promoção encerrar enquanto o participante estiver preenchendo, os campos são desabilitados e uma mensagem é exibida. A submissão também é validada no servidor.
 
 ### Validação de Cupons
 
-O sistema utiliza uma interface `InvoiceValidatorInterface` para validação de cupons junto à Sefaz. Atualmente um `MockInvoiceValidator` simula a consulta. Para integrar com a API real, basta criar uma nova classe que implemente a interface e registrar no `AppServiceProvider`.
+- **Número do cupom + CNPJ da loja** formam uma chave única (um mesmo número pode existir em lojas diferentes)
+- O número do cupom aceita apenas dígitos numéricos
+- O CNPJ da loja é validado como 14 dígitos (com máscara visual no frontend)
+- O sistema utiliza uma interface `InvoiceValidatorInterface` para validação junto à Sefaz. Atualmente um `MockInvoiceValidator` simula a consulta. Para integrar com a API real, basta criar uma nova classe que implemente a interface e registrar no `AppServiceProvider`.
 
 ---
 
@@ -316,8 +390,9 @@ As regras da promoção são centralizadas na tabela `settings` e podem ser gere
 |-------|-------------|-----------|
 | `valor_por_numero` | 20 | Valor em R$ para ganhar 1 número da sorte |
 | `bonus_numeros` | proporcional | Números bônus proporcionais ao valor dos produtos bônus (R$ 20 = +1) |
-| `data_inicio` | 2025-01-01 00:00:00 | Data e hora de início da promoção |
-| `data_fim` | 2025-12-31 23:59:59 | Data e hora de término da promoção |
+| `data_inicio` | 2026-01-01 00:00:00 | Data e hora de início da promoção |
+| `data_fim` | 2026-12-31 23:59:59 | Data e hora de término da promoção |
+| `nome_promocao` | Promoção Modelo 2026 | Nome da campanha promocional |
 | `total_series` | 10 | Total de séries (0 a 9) |
 | `numeros_por_serie` | 10000 | Números por série (0000 a 9999) |
 | `fila_bloqueada` | false | Status da fila de processamento |
@@ -360,12 +435,12 @@ O painel administrativo oferece listagens completas para acompanhamento e valida
 
 ---
 
-## Tecnologias
+## Aviso Legal
 
-- **Backend:** Laravel 12 / PHP 8.2+
-- **Banco de Dados:** PostgreSQL
-- **Filas:** Laravel Queue (driver: database)
-- **Frontend:** Blade + Bootstrap 5 + Bootstrap Icons
-- **Gráficos:** Chart.js
-- **Exportação:** Maatwebsite/Excel (PhpSpreadsheet)
-- **Testes:** PHPUnit
+**Este projeto é inteiramente fictício e foi desenvolvido exclusivamente para fins de demonstração técnica e portfólio profissional.**
+
+- Não constitui, representa ou está vinculado a qualquer promoção comercial real.
+- Nenhum dado cadastrado no sistema possui validade jurídica, comercial ou legal.
+- Nomes, marcas, produtos e valores apresentados são meramente ilustrativos.
+- O sistema não realiza sorteios reais nem distribui prêmios de qualquer natureza.
+- Não há coleta, armazenamento ou tratamento de dados pessoais reais para fins comerciais.

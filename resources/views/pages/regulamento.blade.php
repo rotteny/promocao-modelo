@@ -12,6 +12,20 @@
                 </div>
                 <div class="card-body p-4">
 
+                    <div class="alert alert-warning border-warning mb-4">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-exclamation-triangle-fill fs-4 me-3 text-warning"></i>
+                            <div>
+                                <h6 class="alert-heading fw-bold mb-1">Promoção Fictícia — Sem Validade Jurídica</h6>
+                                <p class="mb-0 small">
+                                    Este regulamento faz parte de um <strong>projeto de demonstração para portfólio</strong>.
+                                    Trata-se de uma promoção fictícia, sem qualquer validade jurídica, comercial ou legal.
+                                    Nenhum dado cadastrado é real. Nenhum prêmio será sorteado ou entregue.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                     <p class="text-muted small mb-4">A participação na presente promoção implica a aceitação total e irrestrita de todos os termos e condições deste Regulamento.</p>
 
                     <h5 class="fw-bold">1. DO OBJETO</h5>
