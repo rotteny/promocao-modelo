@@ -1,0 +1,178 @@
+LICENÇA PROPRIETÁRIA — TODOS OS DIREITOS RESERVADOS
+
+Copyright (c) 2026 GRDL ME. Todos os direitos reservados.
+
+================================================================================
+
+TERMOS E CONDIÇÕES DE USO, REPRODUÇÃO E DISTRIBUIÇÃO
+
+================================================================================
+
+1. DEFINIÇÕES
+
+1.1. "Titular": GRDL ME, pessoa jurídica de direito privado, única e exclusiva
+detentora de todos os direitos de propriedade intelectual sobre a Obra.
+
+1.2. "Obra": a totalidade do código-fonte, arquivos de configuração, scripts,
+templates, layouts, estrutura de banco de dados, documentação, elementos visuais,
+textos, imagens e quaisquer outros componentes que integram a plataforma
+denominada "Promoção Modelo", incluindo todas as suas versões, derivações,
+atualizações e correções, independentemente do meio ou formato em que se
+encontrem.
+
+1.3. "Usuário": qualquer pessoa física ou jurídica que acesse, visualize,
+obtenha cópia, baixe ou de qualquer forma interaja com a Obra ou com partes
+dela.
+
+2. TITULARIDADE E PROPRIEDADE INTELECTUAL
+
+2.1. A Obra é de propriedade exclusiva e integral do Titular, protegida pela
+legislação brasileira de direitos autorais (Lei nº 9.610/1998), pela legislação
+de propriedade intelectual (Lei nº 9.279/1996), pela Lei nº 14.533/2023 e
+demais normas aplicáveis, incluindo tratados internacionais dos quais o Brasil
+é signatário.
+
+2.2. Todos os direitos patrimoniais e morais sobre a Obra pertencem ao Titular,
+incluindo, sem limitação, os direitos de reprodução, distribuição, comunicação
+ao público, tradução, adaptação, transformação, inclusão em banco de dados,
+compilação e quaisquer outras formas de utilização existentes ou que venham a
+ser criadas.
+
+2.3. Nenhuma disposição desta Licença poderá ser interpretada como transferência,
+cessão, renúncia ou abandono, total ou parcial, de qualquer direito de
+propriedade intelectual do Titular sobre a Obra.
+
+3. PERMISSÕES CONCEDIDAS
+
+3.1. O Titular concede ao Usuário, em caráter não exclusivo, intransferível,
+revogável e gratuito, permissão unicamente para:
+
+    a) Visualizar o código-fonte da Obra para fins exclusivos de avaliação
+       técnica, estudo pessoal ou análise de portfólio profissional do Titular;
+
+    b) Clonar ou baixar uma cópia local da Obra exclusivamente para os fins
+       previstos na alínea anterior.
+
+3.2. As permissões concedidas no item 3.1 não se estendem a quaisquer outros
+usos não expressamente previstos nesta Licença, os quais permanecem
+integralmente reservados ao Titular.
+
+4. RESTRIÇÕES E VEDAÇÕES
+
+4.1. É EXPRESSAMENTE VEDADO ao Usuário, sem a prévia e expressa autorização
+por escrito do Titular:
+
+    a) UTILIZAR a Obra, no todo ou em parte, para fins comerciais, lucrativos
+       ou de qualquer natureza que vise à obtenção de vantagem econômica,
+       direta ou indireta;
+
+    b) MODIFICAR, alterar, adaptar, traduzir, descompilar, realizar engenharia
+       reversa, desmontar ou criar obras derivadas baseadas na Obra, no todo
+       ou em parte;
+
+    c) DISTRIBUIR, sublicenciar, alugar, emprestar, arrendar, vender, revender,
+       ceder, transferir ou de qualquer forma disponibilizar a Obra a terceiros,
+       seja a título oneroso ou gratuito;
+
+    d) REPRODUZIR, copiar ou duplicar a Obra, no todo ou em parte, para fins
+       diversos dos expressamente previstos no item 3.1;
+
+    e) INCORPORAR a Obra, no todo ou em parte, em outros projetos, produtos,
+       serviços, plataformas ou sistemas, independentemente de sua natureza
+       ou finalidade;
+
+    f) REMOVER, alterar, ocultar ou tornar ilegível qualquer aviso de direitos
+       autorais, marca registrada, aviso de propriedade ou qualquer outra
+       indicação de titularidade constante da Obra;
+
+    g) UTILIZAR o nome, marca, logotipo ou qualquer sinal distintivo do Titular
+       ou da Obra para fins de promoção, publicidade ou endosso sem autorização
+       expressa e por escrito;
+
+    h) APRESENTAR a Obra, no todo ou em parte, como sendo de autoria própria
+       ou de terceiros;
+
+    i) HOSPEDAR, publicar ou disponibilizar a Obra em servidores, plataformas
+       ou ambientes acessíveis ao público, exceto para fins de portfólio do
+       próprio Titular.
+
+4.2. As vedações constantes do item 4.1 aplicam-se a todo e qualquer componente
+da Obra, incluindo, mas não se limitando a: código-fonte, estruturas de dados,
+algoritmos, interfaces, layouts, textos, documentação e elementos visuais.
+
+5. AUSÊNCIA DE GARANTIAS
+
+5.1. A OBRA É DISPONIBILIZADA "COMO ESTÁ" ("AS IS"), SEM GARANTIAS DE QUALQUER
+NATUREZA, EXPRESSAS OU IMPLÍCITAS, INCLUINDO, SEM LIMITAÇÃO, GARANTIAS DE
+COMERCIALIZAÇÃO, ADEQUAÇÃO A UMA FINALIDADE ESPECÍFICA, NÃO VIOLAÇÃO DE
+DIREITOS DE TERCEIROS OU AUSÊNCIA DE DEFEITOS.
+
+5.2. O Titular não garante que a Obra seja livre de erros, que funcione de forma
+ininterrupta ou que atenda a quaisquer requisitos específicos do Usuário.
+
+5.3. O Usuário assume integralmente todos os riscos relacionados à qualidade,
+desempenho e funcionalidade da Obra.
+
+6. LIMITAÇÃO DE RESPONSABILIDADE
+
+6.1. EM NENHUMA HIPÓTESE O TITULAR SERÁ RESPONSÁVEL POR QUAISQUER DANOS
+DIRETOS, INDIRETOS, INCIDENTAIS, ESPECIAIS, EXEMPLARES OU CONSEQUENCIAIS
+(INCLUINDO, SEM LIMITAÇÃO, DANOS POR PERDA DE LUCROS, PERDA DE DADOS,
+INTERRUPÇÃO DE NEGÓCIOS OU QUALQUER OUTRA PERDA COMERCIAL) DECORRENTES DO
+USO OU DA IMPOSSIBILIDADE DE USO DA OBRA, AINDA QUE O TITULAR TENHA SIDO
+ADVERTIDO DA POSSIBILIDADE DE TAIS DANOS.
+
+7. VIOLAÇÃO E PENALIDADES
+
+7.1. O descumprimento de qualquer disposição desta Licença pelo Usuário
+acarretará a imediata e automática revogação de todas as permissões concedidas,
+sem prejuízo do direito do Titular de adotar todas as medidas judiciais e
+extrajudiciais cabíveis para a defesa de seus direitos, incluindo, sem
+limitação:
+
+    a) Ação de indenização por danos materiais e morais;
+    b) Ação cominatória de obrigação de fazer e/ou não fazer;
+    c) Medidas cautelares e tutelas de urgência;
+    d) Representação criminal, nos termos dos artigos 184 e seguintes do
+       Código Penal Brasileiro;
+    e) Quaisquer outras medidas previstas na legislação aplicável.
+
+7.2. O Usuário infrator responderá por todas as perdas e danos causados ao
+Titular, incluindo lucros cessantes, danos emergentes e honorários advocatícios.
+
+8. DISPOSIÇÕES GERAIS
+
+8.1. Esta Licença constitui o acordo integral entre o Titular e o Usuário no
+que se refere ao uso da Obra, substituindo quaisquer entendimentos ou acordos
+anteriores, escritos ou verbais, sobre o mesmo objeto.
+
+8.2. A invalidade ou inexequibilidade de qualquer disposição desta Licença não
+afetará a validade ou exequibilidade das demais disposições, que permanecerão
+em pleno vigor e efeito.
+
+8.3. A tolerância do Titular em relação a qualquer violação desta Licença não
+constituirá renúncia, novação ou precedente invocável, nem alterará o direito
+do Titular de exigir o cumprimento integral dos termos aqui estabelecidos a
+qualquer tempo.
+
+8.4. O Titular reserva-se o direito de alterar os termos desta Licença a
+qualquer tempo, mediante publicação da versão atualizada no repositório
+oficial da Obra.
+
+9. LEI APLICÁVEL E FORO
+
+9.1. Esta Licença será regida e interpretada de acordo com as leis da República
+Federativa do Brasil.
+
+9.2. Fica eleito o foro da comarca da sede do Titular como competente para
+dirimir quaisquer controvérsias oriundas desta Licença, com renúncia expressa
+a qualquer outro, por mais privilegiado que seja.
+
+================================================================================
+
+GRDL ME — Todos os direitos reservados.
+
+Para solicitações de licenciamento comercial ou autorizações especiais, entre
+em contato pelo e-mail: contato@grdl.com.br
+
+================================================================================

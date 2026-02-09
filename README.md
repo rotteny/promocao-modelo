@@ -41,7 +41,7 @@ O sistema simula uma promoção comercial completa, onde participantes cadastram
 ### 1. Clonar o repositório
 
 ```bash
-git clone <url-do-repositorio> promocao-modelo
+git clone https://github.com/grotteny/promocao-modelo.git
 cd promocao-modelo
 ```
 
@@ -53,22 +53,6 @@ Se ainda não possui o Laradock configurado, clone-o como subdiretório ou na ra
 git clone https://github.com/Laradock/laradock.git
 cd laradock
 cp .env.example .env
-```
-
-No `.env` do Laradock, ajuste:
-
-```dotenv
-# Apontar para o projeto
-APP_CODE_PATH_HOST=../promocao-modelo
-
-# PostgreSQL
-POSTGRES_DB=promocao_modelo
-POSTGRES_USER=default
-POSTGRES_PASSWORD=secret
-POSTGRES_PORT=5432
-
-# PHP
-PHP_VERSION=8.2
 ```
 
 ### 3. Subir os containers
@@ -444,3 +428,13 @@ O painel administrativo oferece listagens completas para acompanhamento e valida
 - Nomes, marcas, produtos e valores apresentados são meramente ilustrativos.
 - O sistema não realiza sorteios reais nem distribui prêmios de qualquer natureza.
 - Não há coleta, armazenamento ou tratamento de dados pessoais reais para fins comerciais.
+
+---
+
+## Licença
+
+**Copyright (c) 2026 GRDL ME. Todos os direitos reservados.**
+
+Este software é de propriedade exclusiva da **GRDL ME** e está protegido pela legislação brasileira de direitos autorais e propriedade intelectual. É permitida apenas a visualização do código-fonte para fins de avaliação técnica e análise de portfólio. **O uso comercial, a modificação e a redistribuição são expressamente proibidos** sem autorização prévia e por escrito do titular.
+
+Consulte o arquivo [`LICENSE`](LICENSE) para os termos completos.
